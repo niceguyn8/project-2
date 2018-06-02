@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 <h1>Create a Quiz</h1>
 <h2>Choose Your Quiz Parameters</h2>
+=======
+<h1>Test Your Knowledge</h1>
+
+
+>>>>>>> master
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +17,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+<<<<<<< HEAD
 </head>
 <body>
     <div class="container">
+=======
+
+
+
+</head>
+
+<body>
+    <div class="container" id="CreateQuiz">
+        <h2>Choose Your Quiz Parameters</h2>
+>>>>>>> master
         <h4>Choose Your Difficulty</h4>
         <select class="form-control" id="difficulty">
             <option value></option>
@@ -22,15 +39,27 @@
             <option value="hard">Hard</option>
         </select>
         <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="diff_chosen">
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
             <div class="chosen-drop">
                 <u1 class="chosen-results">
                     <li class="active-result" data-option-array-index="easy" style>easy</li>
                     <li class="active-result" data-option-array-index="medium" style>medium</li>
                     <li class="active-result" data-option-array-index="hard" style>hard</li>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                 </u1>
             </div>
         </div>
         <br>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         <h4>Choose a Category</h4>
         <select class="form-control" id=category>
             <option value></option>
@@ -41,6 +70,10 @@
             <option value="21">Sports</option>
         </select>
         <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="category_chosen">
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
             <div class="chosen-drop">
                 <u1 class="chosen-results">
                     <li class="active-result" data-option-array-index="20" style>Mythology</li>
@@ -52,13 +85,25 @@
             </div>
         </div>
         <br>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
         <h4>Question Type</h4>
         <select class="form-control" id="qtype">
             <option value></option>
             <option value="boolean">True/False</option>
             <option value="multiple">Multiple Choice</option>
+<<<<<<< HEAD
         </select>
         <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
+=======
+
+        </select>
+        <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
+
+>>>>>>> master
             <div class="chosen-drop">
                 <u1 class="chosen-results">
                     <li class="active-result" data-option-array-index="boolean" style>True/False</li>
@@ -67,6 +112,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
     <script type="text/javascript">
         $("#submit").on("click", function (event) {
@@ -83,3 +129,69 @@
         });
     </script>
 </body>
+=======
+
+    <body>
+        <div class="container" id="header">
+            <h1 class="display-1"></h1>
+            <div class="box" id="time"></div>
+            <div class="main" id="quiz"></div>
+        </div>
+        <div class="footer" id="end"></div>
+
+        </div>
+
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+        <script type="text/javascript">
+            $("#submit").on("click", function (event) {
+                event.preventDefault();
+
+                var difficulty = $("#difficulty").val();
+                var category = $("#category").val();
+                var type = $("#qtype").val();
+                queryURL = "https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=" + difficulty + "&type=" + type;
+                console.log(queryURL);
+                $("#CreateQuiz").remove()
+                // timer = setInterval(game.time, 1000)
+                $("#end").append("<button>" + "Submit" + "</button>")
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                })
+
+                    .then(function (response) {
+                        for (var i = 0; i < response.results.length; i++) {
+                            var question = $("<p>");
+                            var correctAnswer = $("<p>");
+                            var incorrectAnswer = $("<p>");
+                            question.text(response.results[i].question);
+                            correctAnswer.text(response.results[i].correct_answer);
+                            incorrectAnswer.text(response.results[i].incorrect_answers);
+                            $("#quiz").append(question);
+                            $("#quiz").append(correctAnswer);
+                            $("#quiz").append(incorrectAnswer);
+                            
+                        }
+                    });
+            })
+        
+
+
+               
+        
+                
+
+
+
+
+
+
+        
+
+
+
+        </script>
+    </body>
+>>>>>>> master
