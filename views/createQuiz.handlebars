@@ -82,66 +82,145 @@
         </div>
     </div>
 
-    <body>
-        <div class="container" id="header">
-            <h1 class="display-1"></h1>
-            <div class="box" id="time"></div>
-            <div class="main" id="quiz"></div>
+
+    <div class="main" id="quiz">
+        <div class="container">
+            <div id="content">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="question" id="questiondisplay"></div>
+
+                        <div class="answers" id="answerdisplay">
+
+                            <span class="questions" id="quizdisplay0"></span>
+
+                            <span class="questions" id="quizdisplay1"></span>
+
+                            <span class="questions" id="quizdisplay2"></span>
+
+                            <span class="questions" id="quizdisplay3"></span>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="footer" id="end"></div>
 
-        </div>
+    </div>
+
+    <div class="footer" id="end">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitcreate">Submit</button>
 
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
-        <script type="text/javascript">
-            $("#submit").on("click", function (event) {
-                event.preventDefault();
+    </div>
+    <script type="text/javascript">
+        $("#submitcreate").on("click", function (event) {
+            event.preventDefault();
+            var difficulty = $("#difficulty").val();
+            var category = $("#category").val();
+            var type = $("#qtype").val();
+            queryURL = "https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=" + difficulty + "&type=" + type;
+            console.log(queryURL);
+            $("#CreateQuiz").remove()
+            $("#submitcreate").remove()
+            /* var quizsubmit = $("<button>");
+             quizsubmit.attr("id", "quizsubmit");
+             quizsubmit.attr( "type", "submit");
+             quizsubmit.text("Submit");
+             $("#end").append(quizsubmit);*/
+            var i;
+            var quizAnswers = [];
+            var correct = 0;
+            var incorrect = 0;
+            var imageChoice;
+            // quizBuild();
+            //quizConstructor();
 
-                var difficulty = $("#difficulty").val();
-                var category = $("#category").val();
-                var type = $("#qtype").val();
-                queryURL = "https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=" + difficulty + "&type=" + type;
-                console.log(queryURL);
-                $("#CreateQuiz").remove()
-                // timer = setInterval(game.time, 1000)
-                $("#end").append("<button>" + "Submit" + "</button>")
+            i = 0;
 
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                .then(function (response) {
+                    console.log(response);
+
+                    console.log(i);
+                    console.log(response.results[i].question);
+
+
+                    function quizwrite() {
+
+
+                       
+                        $("#questiondisplay").append(response.results[i].question);
+
+                        $("#quizdisplay0").append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + response.results[i].correct_answer + '">' + response.results[i].correct_answer + '</button>');
+                        $("#quizdisplay1").append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + response.results[i].incorrect_answers[0] + '">' + response.results[i].incorrect_answers[0] + '</button>');
+
+                        $("#quizdisplay2").append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + response.results[i].incorrect_answers[1] + '">' + response.results[i].incorrect_answers[1] + '</button>');
+
+                        $("#quizdisplay3").append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + response.results[i].incorrect_answers[2] + '">' + response.results[i].incorrect_answers[2] + '</button>');
+                    }
+                    
+                    quizwrite();
+
+
+
+                   
+                    $('.answer-button').on("click", function (event) {
+
+                        if ($(event.target).data("name") == response.results[i].correct_answer) {
+                            correct++;
+                            console.log("Correct score " + correct);
+                        } else {
+                            incorrect++;
+                            console.log("Incorrect score " + incorrect);
+                        }
+                    
+
+                      
+                        $("#questiondisplay").empty()
+                         $(".answer-button").remove()
+
+
+                        if (i <= 10) {
+                                i++;
+                                quizwrite();
+                            } else {
+                                alert("game over");
+                            }
+                        
+                    })
+
                 })
 
-                    .then(function (response) {
-                        for (var i = 0; i < response.results.length; i++) {
-                            var question = $("<p>");
-                            var correctAnswer = $("<p>");
-                            var incorrectAnswer = $("<p>");
-                            question.text(response.results[i].question);
-                            correctAnswer.text(response.results[i].correct_answer);
-                            incorrectAnswer.text(response.results[i].incorrect_answers);
-                            $("#quiz").append(question);
-                            $("#quiz").append(correctAnswer);
-                            $("#quiz").append(incorrectAnswer);
-                            
-                        }
-                    });
-            })
-        
-
-
-               
-        
-                
+        });
 
 
 
 
 
 
-        
 
 
 
-        </script>
-    </body>
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
