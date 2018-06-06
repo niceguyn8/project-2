@@ -1,8 +1,6 @@
-<h1>
-    Create a Quiz</h1>
-<h2>Choose Your Quiz Parameters</h2>
 
-<h1>Test Your Knowledge</h1>
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -16,18 +14,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 
-</head>
-
+</head>        
 <body>
-    <div class="container">
-        </head>
-
-        <body>
             <div class="jumbotron">
                 <div class="container">
                     <h1>Test YOUR KNOWLEDGE</h1>
                 </div>
             </div>
+
 
             <div class="container">
                 <div id="content">
@@ -41,72 +35,6 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div id="display"></div>
 
-                            <div class="container" id="CreateQuiz">
-                                <h2>Choose Your Quiz Parameters</h2>
-
-                                <h4>Choose Your Difficulty</h4>
-                                <select class="form-control" id="difficulty">
-                                    <option value></option>
-                                    <option value="easy">Easy</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="hard">Hard</option>
-                                </select>
-                                <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="diff_chosen">
-
-                                    <div class="chosen-drop">
-                                        <u1 class="chosen-results">
-                                            <li class="active-result" data-option-array-index="easy" style>easy</li>
-                                            <li class="active-result" data-option-array-index="medium" style>medium</li>
-                                            <li class="active-result" data-option-array-index="hard" style>hard</li>
-
-                                        </u1>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <h4>Choose a Category</h4>
-                                <select class="form-control" id=category>
-                                    <option value></option>
-                                    <option value="20">Mythology</option>
-                                    <option value="23">History</option>
-                                    <option value="24">Politics</option>
-                                    <option value="25">Art</option>
-                                    <option value="21">Sports</option>
-                                </select>
-                                <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="category_chosen">
-
-                                    <div class="chosen-drop">
-                                        <u1 class="chosen-results">
-                                            <li class="active-result" data-option-array-index="20" style>Mythology</li>
-                                            <li class="active-result" data-option-array-index="23" style>History</li>
-                                            <li class="active-result" data-option-array-index="24" style>Politics</li>
-                                            <li class="active-result" data-option-array-index="25" style>Art</li>
-                                            <li class="active-result" data-option-array-index="21" style>Sports</li>
-                                        </u1>
-                                    </div>
-                                </div>
-                                <br>
-
-                                <h4>Question Type</h4>
-                                <select class="form-control" id="qtype">
-                                    <option value></option>
-                                    <option value="boolean">True/False</option>
-                                    <option value="multiple">Multiple Choice</option>
-
-                                </select>
-                                <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
-
-                                    </select>
-                                    <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
-
-                                        <div class="chosen-drop">
-                                            <u1 class="chosen-results">
-                                                <li class="active-result" data-option-array-index="boolean" style>True/False</li>
-                                                <li class="active-result" data-option-array-index="multiple" style>Multiple Choice</li>
-                                            </u1>
-                                        </div>
-                                    </div>
-
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div id="gif"></div>
@@ -116,33 +44,17 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
-                            <script type="text/javascript">
-                                $("#submit").on("click", function (event) {
-                                    event.preventDefault();
-                                    var difficulty = $("#difficulty").val();
-                                    var category = $("#category").val();
-                                    var type = $("#qtype").val();
-                                    queryURL = "https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=" + difficulty + "&type=" + type
-
-                                    //  https://opentdb.com/api.php?amount=10&category=23&difficulty=easy&type=boolean
-                                    // https://opentdb.com/api.php?amount=10+&category=23&difficulty=Easy&type=boolean
-
-                                    console.log(queryURL);
-                                });
-                            </script>
-        </body>
-
-
-        <body>
+        
             <div class="container" id="header">
                 <h1 class="display-1"></h1>
                 <div class="box" id="time"></div>
                 <div class="main" id="quiz"></div>
+
             </div>
             <div class="footer" id="end"></div>
 
             </div>
+
 
 
             <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
@@ -417,7 +329,7 @@
                 }
 
             </script>
-
         </body>
 
-</body>
+
+     
