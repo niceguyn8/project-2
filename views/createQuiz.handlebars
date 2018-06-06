@@ -1,7 +1,19 @@
+<<<<<<< HEAD
 <h1>Create a Quiz</h1>
 <h2>Choose Your Quiz Parameters</h2>
 <h1>Test Your Knowledge</h1>
 
+=======
+
+
+<div id="createQuizpage">
+<h1>Test Your Knowledge</h1>
+<h1>Create a Quiz</h1>
+<h2>Choose Your Quiz Parameters</h2>
+
+<h1>Test Your Knowledge</h1>
+
+>>>>>>> master
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +25,43 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+<<<<<<< HEAD
 </head>
 <body>
     <div class="container">
+=======
+
+</head>
+<body>
+    <div class="container">
+</head>
+>>>>>>> master
 
 <body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Test YOUR KNOWLEDGE</h1>
+          </div>
+        </div>
+  
+      <div class="container">
+        <div id="content">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <button id="startButton">Start!</button>
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="display"></div>
+
     <div class="container" id="CreateQuiz">
         <h2>Choose Your Quiz Parameters</h2>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         <h4>Choose Your Difficulty</h4>
         <select class="form-control" id="difficulty">
             <option value></option>
@@ -62,14 +104,26 @@
             </div>
         </div>
         <br>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
         <h4>Question Type</h4>
         <select class="form-control" id="qtype">
             <option value></option>
             <option value="boolean">True/False</option>
             <option value="multiple">Multiple Choice</option>
+<<<<<<< HEAD
         </select>
         <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
+=======
+
+
+        </select>
+        <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
+
+>>>>>>> master
         </select>
         <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
 
@@ -79,9 +133,21 @@
                     <li class="active-result" data-option-array-index="multiple" style>Multiple Choice</li>
                 </u1>
             </div>
-        </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div id="gif"></div>
+            </div>
+          </div>
+
+      </div>
     </div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
     <script type="text/javascript">
         $("#submit").on("click", function (event) {
@@ -106,6 +172,10 @@
     </script>
 </body>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     <body>
         <div class="container" id="header">
             <h1 class="display-1"></h1>
@@ -118,7 +188,9 @@
 
 
         <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+
         <script type="text/javascript">
+<<<<<<< HEAD
             $("#submit").on("click", function (event) {
                 event.preventDefault();
 
@@ -157,15 +229,277 @@
 
 
 
+=======
+            $('#startButton').on('click', function () {
+                $('#startButton').remove();
+                gameStart.displayQuestion();
+            });
+
+            // see if the answer is correct
+            $(document).on('click', '.answer-button', function (event) {
+                gameStart.clicked(event);
+            })
+>>>>>>> master
+
+            $(document).on('click', '#reset-button', function (event) {
+                gameStart.reset();
+            })
+
+<<<<<<< HEAD
 
 
 
 
 
+=======
+            // WHEN GAME STARTS:
+            // Display 1 question from array of questions
+            // Display Answer options (specific to that selected question) from array
+            // Create array of questions
+            var questionsArray = [
+                {
+                    category: "Art",
+                    type: "multiple",
+                    difficulty: "easy",
+                    question: "Who painted the Sistine Chapel?",
+                    correct_answer: "Michelangelo",
+                    incorrect_answers: [
+                        "Leonardo da Vinci",
+                        "Pablo Picasso",
+                        "Raphael"
+                    ]
+                },
+                {
+                    category: "Geography",
+                    type: "multiple",
+                    difficulty: "medium",
+                    question: "What is the capital of Chile?",
+                    correct_answer: "Santiago",
+                    incorrect_answers: [
+                        "Valpara&iacute;so",
+                        "Copiap&oacute;",
+                        "Antofagasta"
+                    ]
+                },
+                {
+                    category: "Entertainment: Board Games",
+                    type: "multiple",
+                    difficulty: "easy",
+                    question: "How many pieces are there on the board at the start of a game of chess?",
+                    correct_answer: "32",
+                    incorrect_answers: [
+                        "16",
+                        "20",
+                        "36"
+                    ]
+                },
+                {
+                    category: "Geography",
+                    type: "multiple",
+                    difficulty: "hard",
+                    question: "Which is the largest freshwater lake in the world?",
+                    correct_answer: "Lake Superior ",
+                    incorrect_answers: [
+                        "Caspian Sea",
+                        "Lake Michigan",
+                        "Lake Huron"
+                    ]
+                },
+                {
+                    category: "Entertainment: Music",
+                    type: "multiple",
+                    difficulty: "medium",
+                    question: "What is the real name of Canadian electronic music producer deadmau5?",
+                    correct_answer: "Joel Zimmerman",
+                    incorrect_answers: [
+                        "Sonny Moore",
+                        "Adam Richard Wiles",
+                        "Thomas Wesley Pentz"
+                    ]
+                },
+                {
+                    category: "General Knowledge",
+                    type: "boolean",
+                    difficulty: "hard",
+                    question: "Pluto is a planet.",
+                    correct_answer: "False",
+                    incorrect_answers: [
+                        "True"
+                    ]
+                },
+                {
+                    category: "Science & Nature",
+                    type: "multiple",
+                    difficulty: "medium",
+                    question: "What stage of development do the majority of eukaryotic cells remain in for most of their life?",
+                    correct_answer: "Interphase",
+                    incorrect_answers: [
+                        "Prophase",
+                        "Stasis",
+                        "Telophase"
+                    ]
+                },
+                {
+                    category: "Entertainment: Video Games",
+                    type: "multiple",
+                    difficulty: "hard",
+                    question: "Which of these characters was considered, but ultimately not included, for Super Smash Bros. Melee?",
+                    correct_answer: "James Bond",
+                    incorrect_answers: [
+                        "Diddy Kong",
+                        "Mega Man",
+                        "Wave Racer"
+                    ]
+                },
+                {
+                    category: "Entertainment: Video Games",
+                    type: "boolean",
+                    difficulty: "easy",
+                    question: "The Konami Code is known as Up, Up, Down, Down, Left, Right, Right, Left, B, A, Start.",
+                    correct_answer: "False",
+                    incorrect_answers: [
+                        "True"
+                    ]
+                },
+                {
+                    category: "History",
+                    type: "multiple",
+                    difficulty: "medium",
+                    question: "Who was the leader of the Communist Party of Yugoslavia ?",
+                    correct_answer: "Josip Broz Tito",
+                    incorrect_answers: [
+                        "Karadjordje Petrovic",
+                        "Milos Obilic",
+                        "Aleskandar Petrovic"
+                    ]
+                }
+            ];
+            // Variable to store gifs
+            var gifArray = ['stallone', 'lee', 'arnold', 'mr-t', 'jcvd', 'die-hard', 'kurt', 'eddie', 'chuck'];
 
+            // WHEN GAME STARTS:
+            var gameStart = {
+                questionSelected: 0,
+                timeLeft: 10,
+                correctAnswer: 0,
+                wrongAnswer: 0,
 
+                // WHEN GAME STARTS:
+                // Display 1 question from array of questions
+                displayQuestion: function () {
+                    time = setInterval(gameStart.timer, 1000);
+                    $('#display').html("<h3>Hurry Up!:</h3>");
+                    $('#display').append("<h2 id='timer'>10</h2>");
+                    $('#display').append('<h2>' + questionsArray[gameStart.questionSelected].question + '</h2>');
+                    // Display Answer options (specific to the selected question) from array
+                    for (var i = 0; i < questionsArray[gameStart.questionSelected].correct_answer.length + 1; i++) {
+                        $('#display').append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].correct_answer + '">' + questionsArray[gameStart.questionSelected].correct_answer + '</button>');
+                            $('#display').append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '</button>');
 
+                            $('#display').append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '</button>');
 
+                            $('#display').append('<button class="answer-button" id="button- '
+                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '</button>');
+                    }
+
+                },
+                // Begin count down using timer
+                timer: function () {
+                    gameStart.timeLeft--;
+                    $("#timer").html(gameStart.timeLeft);
+                    if (gameStart.timeLeft <= 0) {
+                        console.log("TIME UP");
+                        gameStart.timeOut();
+                    }
+                },
+                nextQuestion: function () {
+                    gameStart.timeLeft = 10,
+                        $('#timer').html(gameStart.timer);
+                    gameStart.questionSelected++;
+                    gameStart.displayQuestion();
+                    $('#gif').empty();
+                },
+
+                // when count down reaches 0 the user looses
+                timeOut: function () {
+                    clearInterval(time);
+                    $('#display').html('<h2>Time is up!</h2>')
+                    $('#display').append('<h3>You should have guessed: '
+                        + questionsArray[gameStart.questionSelected].answer + '</h3>');
+                    if (gameStart.questionSelected == questionsArray.length - 1) {
+                        setTimeout(gameStart.results, 5000);
+                    } else {
+                        setTimeout(gameStart.nextQuestion, 5000);
+                    }
+                    gameStart.wrongAnswer++;
+                    $('#gif').html('<img src = "assets/images/' + gifArray[gameStart.questionSelected] + '.gif" width = "400px">');
+                },
+                results: function () {
+                    clearInterval(time);
+                    $('#gif').empty();
+                    $('#display').html("<h2>Party's Over</h2>")
+                    $('#display').append("<h3>Correct: " + gameStart.correctAnswer + "</h3>");
+                    $('#display').append("<h3>Incorrect: " + gameStart.wrongAnswer + "</h3>");
+                    $('#display').append("<button id='reset-button'> Try Again</button>")
+                },
+                clicked: function (event) {
+                    clearInterval(time);
+                    if ($(event.target).data("name") == questionsArray[gameStart.questionSelected].
+                        answer) {
+                        gameStart.correctGuess();
+                    } else {
+                        gameStart.incorrectGuess();
+                    }
+                    // display gif after answer is clicked
+                    $('#gif').html('<img src = "assets/images/' + gifArray[gameStart.questionSelected] + '.gif" width = "600px">');
+                },
+                correctGuess: function () {
+                    console.log("User guessed right");
+                    clearInterval(time);
+                    gameStart.correctAnswer++;
+                    $('#display').html('<h2>You got it, dude!</h2>');
+                    if (gameStart.questionSelected == questionsArray.length - 1) {
+                        setTimeout(gameStart.results, 5000);
+                    } else {
+                        setTimeout(gameStart.nextQuestion, 5000);
+                    }
+                },
+                incorrectGuess: function () {
+                    console.log("User Guessed Wrong");
+                    clearInterval(time);
+                    gameStart.wrongAnswer++;
+                    $('#display').html('<h2>Wrong! Booooooo!</h2>');
+                    $('#display').append('<h3>You should have guessed: '
+                        + questionsArray[gameStart.questionSelected].answer + '</h3>');
+                    if (gameStart.questionSelected == questionsArray.length - 1) {
+                        setTimeout(gameStart.results, 5000);
+                    } else {
+                        setTimeout(gameStart.nextQuestion, 5000);
+                    }
+                },
+                reset: function () {
+                    gameStart.questionSelected = 0;
+                    gameStart.timeLeft = 10;
+                    gameStart.wrongAnswer = 0;
+                    gameStart.correctAnswer = 0;
+                    gameStart.displayQuestion();
+                    $('#gif').empty();
+                },
+            }
+>>>>>>> master
 
         </script>
+
+</body>
+
+        </script>
+       
     </body>
+<<<<<<< HEAD
+=======
+</div>
+    </body>
+>>>>>>> master
