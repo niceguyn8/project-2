@@ -1,4 +1,5 @@
-<h1>Test Your Knowledge</h1>
+
+
 
 
 <head>
@@ -13,135 +14,322 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 
-
-
-</head>
-
+</head>        
 <body>
-    <div class="container" id="CreateQuiz">
-        <h2>Choose Your Quiz Parameters</h2>
-        <h4>Choose Your Difficulty</h4>
-        <select class="form-control" id="difficulty">
-            <option value></option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-        <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="diff_chosen">
-
-            <div class="chosen-drop">
-                <u1 class="chosen-results">
-                    <li class="active-result" data-option-array-index="easy" style>easy</li>
-                    <li class="active-result" data-option-array-index="medium" style>medium</li>
-                    <li class="active-result" data-option-array-index="hard" style>hard</li>
-
-                </u1>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Test YOUR KNOWLEDGE</h1>
+                </div>
             </div>
-        </div>
-        <br>
 
-        <h4>Choose a Category</h4>
-        <select class="form-control" id=category>
-            <option value></option>
-            <option value="20">Mythology</option>
-            <option value="23">History</option>
-            <option value="24">Politics</option>
-            <option value="25">Art</option>
-            <option value="21">Sports</option>
-        </select>
-        <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="category_chosen">
 
-            <div class="chosen-drop">
-                <u1 class="chosen-results">
-                    <li class="active-result" data-option-array-index="20" style>Mythology</li>
-                    <li class="active-result" data-option-array-index="23" style>History</li>
-                    <li class="active-result" data-option-array-index="24" style>Politics</li>
-                    <li class="active-result" data-option-array-index="25" style>Art</li>
-                    <li class="active-result" data-option-array-index="21" style>Sports</li>
-                </u1>
+            <div class="container">
+                <div id="content">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <button id="startButton">Start!</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div id="display"></div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div id="gif"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+        
+            <div class="container" id="header">
+                <h1 class="display-1"></h1>
+                <div class="box" id="time"></div>
+                <div class="main" id="quiz"></div>
+
             </div>
-        </div>
-        <br>
+            <div class="footer" id="end"></div>
 
-
-        <h4>Question Type</h4>
-        <select class="form-control" id="qtype">
-            <option value></option>
-            <option value="boolean">True/False</option>
-            <option value="multiple">Multiple Choice</option>
-
-        </select>
-        <div class="chosen-container chosen-container-single" "chosen-container-active" "chosen-with-drop" title id="qtype_chosen">
-
-            <div class="chosen-drop">
-                <u1 class="chosen-results">
-                    <li class="active-result" data-option-array-index="boolean" style>True/False</li>
-                    <li class="active-result" data-option-array-index="multiple" style>Multiple Choice</li>
-                </u1>
             </div>
-        </div>
-    </div>
-
-    <body>
-        <div class="container" id="header">
-            <h1 class="display-1"></h1>
-            <div class="box" id="time"></div>
-            <div class="main" id="quiz"></div>
-        </div>
-        <div class="footer" id="end"></div>
-
-        </div>
 
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
-        <script type="text/javascript">
-            $("#submit").on("click", function (event) {
-                event.preventDefault();
 
-                var difficulty = $("#difficulty").val();
-                var category = $("#category").val();
-                var type = $("#qtype").val();
-                queryURL = "https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=" + difficulty + "&type=" + type;
-                console.log(queryURL);
-                $("#CreateQuiz").remove()
-                // timer = setInterval(game.time, 1000)
-                $("#end").append("<button>" + "Submit" + "</button>")
+            {{!-- <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button> --}}
+
+            <script type="text/javascript">
+                $('#startButton').on('click', function () {
+                    $('#startButton').remove();
+                    gameStart.displayQuestion();
+                });
+
+                // see if the answer is correct
+                $(document).on('click', '.answer-button', function (event) {
+                    gameStart.clicked(event);
+                })
+
+                $(document).on('click', '#reset-button', function (event) {
+                    gameStart.reset();
+                })
+
+                // WHEN GAME STARTS:
+                // Display 1 question from array of questions
+                // Display Answer options (specific to that selected question) from array
+                // Create array of questions
+                var questionsArray = [
+                    {
+                        category: "Celebrities",
+                        type: "multiple",
+                        difficulty: "medium",
+                        question: "Donald J. Trump&#039;s Middle Name is...",
+                        correct_answer: "John",
+                        incorrect_answers: [
+                            "Jeff",
+                            "Jerald",
+                            "Jason"
+                        ]
+                    },
+                    {
+                        category: "Science & Nature",
+                        type: "multiple",
+                        difficulty: "medium",
+                        question: "Who developed the first successful polio vaccine in the 1950s?",
+                        correct_answer: "Jonas Salk",
+                        incorrect_answers: [
+                            "John F. Enders",
+                            "Thomas Weller",
+                            "Frederick Robbins"
+                        ]
+                    },
+                    {
+                        category: "Entertainment: Japanese Anime & Manga",
+                        type: "multiple",
+                        difficulty: "easy",
+                        question: "In the anime Seven Deadly Sins what is the name of one of the sins?",
+                        correct_answer: "Diane",
+                        incorrect_answers: [
+                            "Sakura",
+                            "Ayano",
+                            "Sheska"
+                        ]
+                    },
+                    {
+                        category: "Animals",
+                        type: "multiple",
+                        difficulty: "hard",
+                        question: "Which of these animals is NOT a lizard?",
+                        correct_answer: "Tuatara",
+                        incorrect_answers: [
+                            "Komodo Dragon",
+                            "Gila Monster",
+                            "Green Iguana"
+                        ]
+                    },
+                    {
+                        category: "Animals",
+                        type: "multiple",
+                        difficulty: "easy",
+                        question: "What is Grumpy Cat&#039;s real name?",
+                        correct_answer: "Tardar Sauce",
+                        incorrect_answers: [
+                            "Sauce",
+                            "Minnie",
+                            "Broccoli"
+                        ]
+                    },
+                    {
+                        category: "Geography",
+                        type: "multiple",
+                        difficulty: "medium",
+                        question: "What is the capital of Slovakia?",
+                        correct_answer: "Bratislava",
+                        incorrect_answers: [
+                            "Sofia",
+                            "Ljubljana",
+                            "Sarajevo"
+                        ]
+                    },
+                    {
+                        category: "Entertainment: Video Games",
+                        type: "multiple",
+                        difficulty: "easy",
+                        question: "In what year was the game &quot;FTL: Faster Than Light&quot; released?",
+                        correct_answer: "2012",
+                        incorrect_answers: [
+                            "2014",
+                            "2013",
+                            "2011"
+                        ]
+                    },
+                    {
+                        category: "Entertainment: Video Games",
+                        type: "multiple",
+                        difficulty: "medium",
+                        question: "What is not a playable race in &quot;Final Fantasy XIV: A Realm Reborn&quot;?",
+                        correct_answer: "Hume",
+                        incorrect_answers: [
+                            "Miqo&#039;te",
+                            "Lalafell",
+                            "Roegadyn"
+                        ]
+                    },
+                    {
+                        category: "Entertainment: Video Games",
+                        type: "multiple",
+                        difficulty: "medium",
+                        question: "In the beginning of the game &quot;Sonic Adventure&quot;, what color Chaos Emerald does Tails own?",
+                        correct_answer: "Purple",
+                        incorrect_answers: [
+                            "Red",
+                            "Green",
+                            "Blue"
+                        ]
+                    },
+                    {
+                        category: "Entertainment: Video Games",
+                        type: "multiple",
+                        difficulty: "medium",
+                        question: "What is the name of the protagonist&#039;s first Persona in &quot;Persona 5&quot;?",
+                        correct_answer: "Arsene",
+                        incorrect_answers: [
+                            "Mara",
+                            "Izanagi",
+                            "Sandaphlon"
+                        ]
+                    }
+                ];
+                // Variable to store gifs
+                var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=DbTrA1zDtXF3YA0imZIJ1GeDSwTgnsrv&q=smart&limit=10&offset=0&lang=en";
 
                 $.ajax({
                     url: queryURL,
                     method: "GET"
                 })
-
                     .then(function (response) {
-                        for (var i = 0; i < response.results.length; i++) {
-                            var question = $("<p>");
-                            var correctAnswer = $("<p>");
-                            var incorrectAnswer = $("<p>");
-                            question.text(response.results[i].question);
-                            correctAnswer.text(response.results[i].correct_answer);
-                            incorrectAnswer.text(response.results[i].incorrect_answers);
-                            $("#quiz").append(question);
-                            $("#quiz").append(correctAnswer);
-                            $("#quiz").append(incorrectAnswer);
-                            
+                        console.log(response);
+                        for (var i = 0; i < response.data.length; i++) {
+                            var gif = $("<img>");
+                            gif.addClass("image");
+                            gif.attr('src', response.data.embed_url);
+                            gifArray.push(gif);
+                        };
+                    })
+
+                var gifArray = [];
+                console.log(gifArray);
+
+                // WHEN GAME STARTS:
+                var gameStart = {
+                    questionSelected: 0,
+                    timeLeft: 90,
+                    correctAnswer: 0,
+                    wrongAnswer: 0,
+
+                    // WHEN GAME STARTS:
+                    // Display 1 question from array of questions
+                    displayQuestion: function () {
+                        time = setInterval(gameStart.timer, 1000);
+                        $('#display').html("<h3>Hurry Up!:</h3>");
+                        $('#display').append("<h2 id='timer'>10</h2>");
+                        $('#display').append('<h2>' + questionsArray[gameStart.questionSelected].question + '</h2>');
+                        // Display Answer options (specific to the selected question) from array
+
+                        $('#display').append('<button class="answer-button" id="button-0" data-name= "' + questionsArray[gameStart.questionSelected].correct_answer + '">' + questionsArray[gameStart.questionSelected].correct_answer + '</button>');
+                        $('#display').append('<button class="answer-button" id="button-1" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '</button>');
+
+                        $('#display').append('<button class="answer-button" id="button 2" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '</button>');
+
+                        $('#display').append('<button class="answer-button" id="button-3" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '</button>');
+
+
+                    },
+                    // Begin count down using timer
+                    timer: function () {
+                        gameStart.timeLeft--;
+                        $("#timer").html(gameStart.timeLeft);
+                        if (gameStart.timeLeft <= 0) {
+                            console.log("TIME UP");
+                            gameStart.timeOut();
                         }
-                    });
-            })
-        
+                    },
+                    nextQuestion: function () {
+                        gameStart.timeLeft = 10,
+                            $('#timer').html(gameStart.timer);
+                        gameStart.questionSelected++;
+                        gameStart.displayQuestion();
+                        $('#gif').empty();
+                    },
+
+                    // when count down reaches 0 the user looses
+                    timeOut: function () {
+                        clearInterval(time);
+                        $('#display').html('<h2>Time is up!</h2>')
+                        $('#display').append('<h3>You should have guessed: '
+                            + questionsArray[gameStart.questionSelected].correct_answer + '</h3>');
+                        if (gameStart.questionSelected == questionsArray.length - 1) {
+                            setTimeout(gameStart.results, 5000);
+                        } else {
+                            setTimeout(gameStart.nextQuestion, 5000);
+                        }
+                        gameStart.wrongAnswer++;
+                        $('#gif').append(gifArray[gameStart.questionSelected]);
+                    },
+                    results: function () {
+                        clearInterval(time);
+                        $('#gif').empty();
+                        $('#display').html("<h2>Party's Over</h2>")
+                        $('#display').append("<h3>Correct: " + gameStart.correctAnswer + "</h3>");
+                        $('#display').append("<h3>Incorrect: " + gameStart.wrongAnswer + "</h3>");
+                        $('#display').append("<button id='reset-button'> Try Again</button>")
+                    },
+                    clicked: function (event) {
+                        clearInterval(time);
+                        if ($(event.target).data("name") == questionsArray[gameStart.questionSelected].correct_answer) {
+                            gameStart.correctGuess();
+                        } else {
+                            gameStart.incorrectGuess();
+                        }
+                        // display gif after answer is clicked
+                        $('#gif').html(gifArray[gameStart.questionSelected]);
+                    },
+                    correctGuess: function () {
+                        console.log("User guessed right");
+                        clearInterval(time);
+                        gameStart.correctAnswer++;
+                        $('#display').html('<h2>You got it, dude!</h2>');
+                        if (gameStart.questionSelected == questionsArray.length - 1) {
+                            setTimeout(gameStart.results, 5000);
+                        } else {
+                            setTimeout(gameStart.nextQuestion, 5000);
+                        }
+                    },
+                    incorrectGuess: function () {
+                        console.log("User Guessed Wrong");
+                        clearInterval(time);
+                        gameStart.wrongAnswer++;
+                        $('#display').html('<h2>Wrong! Booooooo!</h2>');
+                        $('#display').append('<h3>You should have guessed: '
+                            + questionsArray[gameStart.questionSelected].correct_answer + '</h3>');
+                        if (gameStart.questionSelected == questionsArray.length - 1) {
+                            setTimeout(gameStart.results, 5000);
+                        } else {
+                            setTimeout(gameStart.nextQuestion, 5000);
+                        }
+                    },
+                    reset: function () {
+                        gameStart.questionSelected = 0;
+                        gameStart.timeLeft = 10;
+                        gameStart.wrongAnswer = 0;
+                        gameStart.correctAnswer = 0;
+                        gameStart.displayQuestion();
+                        $('#gif').empty();
+                    },
+                }
+
+            </script>
+        </body>
 
 
-               
-        
-                
-
-
-
-
-
-
-        
-
-
-
-        </script>
-    </body>
+     
