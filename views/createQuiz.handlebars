@@ -290,12 +290,29 @@
                 }
             ];
             // Variable to store gifs
-            var gifArray = ['stallone', 'lee', 'arnold', 'mr-t', 'jcvd', 'die-hard', 'kurt', 'eddie', 'chuck'];
+            var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=DbTrA1zDtXF3YA0imZIJ1GeDSwTgnsrv&q=smart&limit=10&offset=0&lang=en";
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        for (var i = 0; i < response.data.length; i++) {
+                            var gif = $("<img>");
+                            gif.addClass("image");
+                            gif.attr('src', response.data.embed_url);
+                           gifArray.push(gif);
+                        };
+                    })
+
+            var gifArray = [];
+            console.log(gifArray);
 
             // WHEN GAME STARTS:
             var gameStart = {
                 questionSelected: 0,
-                timeLeft: 10,
+                timeLeft: 90,
                 correctAnswer: 0,
                 wrongAnswer: 0,
 
@@ -307,18 +324,14 @@
                     $('#display').append("<h2 id='timer'>10</h2>");
                     $('#display').append('<h2>' + questionsArray[gameStart.questionSelected].question + '</h2>');
                     // Display Answer options (specific to the selected question) from array
-                    for (var i = 0; i < questionsArray[gameStart.questionSelected].correct_answer.length + 1; i++) {
-                        $('#display').append('<button class="answer-button" id="button- '
-                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].correct_answer + '">' + questionsArray[gameStart.questionSelected].correct_answer + '</button>');
-                            $('#display').append('<button class="answer-button" id="button- '
-                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '</button>');
+                    
+                        $('#display').append('<button class="answer-button" id="button-0" data-name= "' + questionsArray[gameStart.questionSelected].correct_answer + '">' + questionsArray[gameStart.questionSelected].correct_answer + '</button>');
+                            $('#display').append('<button class="answer-button" id="button-1" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[0] + '</button>');
 
-                            $('#display').append('<button class="answer-button" id="button- '
-                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '</button>');
+                            $('#display').append('<button class="answer-button" id="button 2" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[1] + '</button>');
 
-                            $('#display').append('<button class="answer-button" id="button- '
-                            + i + '" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '</button>');
-                    }
+                            $('#display').append('<button class="answer-button" id="button-3" data-name= "' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '">' + questionsArray[gameStart.questionSelected].incorrect_answers[2] + '</button>');
+                    
 
                 },
                 // Begin count down using timer
@@ -343,14 +356,14 @@
                     clearInterval(time);
                     $('#display').html('<h2>Time is up!</h2>')
                     $('#display').append('<h3>You should have guessed: '
-                        + questionsArray[gameStart.questionSelected].answer + '</h3>');
+                        + questionsArray[gameStart.questionSelected].correct_answer + '</h3>');
                     if (gameStart.questionSelected == questionsArray.length - 1) {
                         setTimeout(gameStart.results, 5000);
                     } else {
                         setTimeout(gameStart.nextQuestion, 5000);
                     }
                     gameStart.wrongAnswer++;
-                    $('#gif').html('<img src = "assets/images/' + gifArray[gameStart.questionSelected] + '.gif" width = "400px">');
+                    $('#gif').append(gifArray[gameStart.questionSelected]);
                 },
                 results: function () {
                     clearInterval(time);
@@ -362,14 +375,14 @@
                 },
                 clicked: function (event) {
                     clearInterval(time);
-                    if ($(event.target).data("name") == questionsArray[gameStart.questionSelected].
-                        answer) {
+                    if ($(event.target).data("name") == questionsArray[gameStart.questionSelected].correct_answer) 
+                    {
                         gameStart.correctGuess();
                     } else {
                         gameStart.incorrectGuess();
                     }
                     // display gif after answer is clicked
-                    $('#gif').html('<img src = "assets/images/' + gifArray[gameStart.questionSelected] + '.gif" width = "600px">');
+                    $('#gif').html(gifArray[gameStart.questionSelected]);
                 },
                 correctGuess: function () {
                     console.log("User guessed right");
@@ -388,7 +401,7 @@
                     gameStart.wrongAnswer++;
                     $('#display').html('<h2>Wrong! Booooooo!</h2>');
                     $('#display').append('<h3>You should have guessed: '
-                        + questionsArray[gameStart.questionSelected].answer + '</h3>');
+                        + questionsArray[gameStart.questionSelected].correct_answer + '</h3>');
                     if (gameStart.questionSelected == questionsArray.length - 1) {
                         setTimeout(gameStart.results, 5000);
                     } else {
