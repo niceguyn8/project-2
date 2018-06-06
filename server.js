@@ -8,13 +8,13 @@ app.use(bodyParser.json());
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
-var routes = require("./controllers/controller.js");
-app.use(routes);
+
+
 
   require("./routes/api-routes.js")(app);
   require("./routes/html-routes.js")(app);
 
-<<<<<<< HEAD
+
   // Syncing our sequelize models and then starting our Express app
   // =============================================================
   db.sequelize.sync({ force: true }).then(function() {
@@ -22,8 +22,3 @@ app.use(routes);
       console.log("App listening on PORT " + PORT);
     });
 });
-=======
-app.listen(PORT, function() {
-  console.log("Server listening on: http://localhost:" + PORT);
-});
->>>>>>> master
