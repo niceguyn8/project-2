@@ -1,4 +1,4 @@
-
+{{!-- 
 <div id="signIn">
     <form action="createQuiz">
         <div class="imgcontainer">
@@ -21,4 +21,47 @@
         </div>
        
 
+</div> --}}
+
+<div id="signIn">
+    <form action="createQuiz">
+
+         <div>
+        <!-- "js-fileapi-wrapper" -- required class -->
+        {{!-- <div class="js-fileapi-wrapper upload-btn">
+            <div class="upload-btn__txt">Upload Picture</div>
+            <input id="choose" name="files" type="file" multiple />
+        </div>
+        <div id="images"><img src="assets/Image/avatar.image.png" alt="Avatar" class="avatar"></div> --}}
+    </div>
+        <div class="imgcontainer">
+            <img src="assets/Image/avatar.image.png" alt="Avatar" class="avatar">
+            
+<label for="image" htmlFor="image">
+   <div class="file-div">
+  </div>
+
+
+</label>
+
+  <input id="fileInput" name="thing" type="file">
+        </div>
+
+        <br>
+        <br>
+
+
+        <div class="container">
+            <label for="uname">
+                <b>
+                    <h1>Username</h1>
+                </b>
+            </label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <button type="submit">Start Quiz</button>
+
+        </div>
+       
+
 </div>
+
