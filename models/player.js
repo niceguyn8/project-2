@@ -3,9 +3,9 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING
   });
 
-  Player.associate = function(models) {
-    Player.hasMany(models.Quiz);
-  }
+  // Player.associate = function(models) {
+  //   Player.hasMany(models.Quiz);
+  // }
 
   // Player
   return Player;
