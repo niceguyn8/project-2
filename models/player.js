@@ -1,7 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
   var Player = sequelize.define("Player", {
-    name: DataTypes.STRING,
-    score: DataTypes.INTEGER
+    name: DataTypes.STRING
   });
-  return Todo;
+
+  Player.associate = function(models) {
+    Player.hasMany(models.Quiz);
+  }
+
+  // Player
+  return Player;
 };
