@@ -1,55 +1,44 @@
 <div id="signIn">
-   <form action="createQuiz">
+    <form action="createQuiz">
 
+        </label>
 
+        <input id="fileInput" name="thing" type="file"> {{!--
+        <input type='file' /> --}}
+        <img id="myImg" src="#" alt="your image" />
 
-
-
-       </label>
-
-       <input id="fileInput" name="thing" type="file">
-
-
-{{!-- <input type='file' /> --}}
-<img id="myImg" src="#" alt="your image" />
-
-<!-- Post Info -->
-<div style='position:fixed;bottom:0;left:0;    
+        <!-- Post Info -->
+        <div style='position:fixed;bottom:0;left:0;    
            background:lightgray;width:100%;'>
 
- 
-       <br>
+            <br>
 
+            <div class="container">
+                <label for="uname">
+                    <b>
+                        <h1>Username</h1>
+                    </b>
+                </label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+                <button type="submit">Start Quiz</button>
 
-       <div class="container">
-           <label for="uname">
-               <b>
-                   <h1>Username</h1>
-               </b>
-           </label>
-           <input type="text" placeholder="Enter Username" name="uname" required>
-           <button type="submit">Start Quiz</button>
+            </div>
 
-       </div>
+        </div>
 
+        <script>
+            $(function () {
+                $(":file").change(function () {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
 
+            function imageIsLoaded(e) {
+                $('#myImg').attr('src', e.target.result);
+            };
+        </script>
 </div>
-
-
-
-   <script>
-       $(function () {
-           $(":file").change(function () {
-               if (this.files && this.files[0]) {
-                   var reader = new FileReader();
-                   reader.onload = imageIsLoaded;
-                   reader.readAsDataURL(this.files[0]);
-               }
-           });
-       });
-
-       function imageIsLoaded(e) {
-           $('#myImg').attr('src', e.target.result);
-       };
-   </script>
-   </div>
