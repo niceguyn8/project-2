@@ -1,29 +1,23 @@
-
 <div id="signIn">
     <form action="createQuiz">
 
-         <div>
-        <!-- "js-fileapi-wrapper" -- required class -->
-        {{!-- <div class="js-fileapi-wrapper upload-btn">
-            <div class="upload-btn__txt">Upload Picture</div>
-            <input id="choose" name="files" type="file" multiple />
-        </div>
-        <div id="images"><img src="assets/Image/avatar.image.png" alt="Avatar" class="avatar"></div> --}}
-    </div>
-        <div class="imgcontainer">
-            <img src="assets/Image/avatar.image.png" alt="Avatar" class="avatar">
-            
-<label for="image" htmlFor="image">
-   <div class="file-div">
-  </div>
 
 
-</label>
 
-  <input id="fileInput" name="thing" type="file">
-        </div>
 
-        <br>
+        </label>
+
+        <input id="fileInput" name="thing" type="file">
+
+
+{{!-- <input type='file' /> --}}
+<img id="myImg" src="#" alt="your image" />
+
+<!-- Post Info -->
+<div style='position:fixed;bottom:0;left:0;    
+            background:lightgray;width:100%;'>
+
+   
         <br>
 
 
@@ -37,6 +31,25 @@
             <button type="submit">Start Quiz</button>
 
         </div>
-       
+
 
 </div>
+
+
+
+    <script>
+        $(function () {
+            $(":file").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+
+        function imageIsLoaded(e) {
+            $('#myImg').attr('src', e.target.result);
+        };
+    </script>
+    </div>
